@@ -3,7 +3,7 @@
 n <- 10^4
 x <- rexp(n, rate = 1)
 
-theta_hat <- mean(1/sqrt(2*pi) * exp(x - x^2/2) * (x > 2.5))
+theta_hat <- mean(1/sqrt(2*pi) * exp(x - x^2/2) * (x > 2.5)) # don't forget (x > 2.5)
 true_prob <- pnorm(2.5, lower.tail = FALSE)
 
 library(testthat)
