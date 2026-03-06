@@ -5,7 +5,7 @@ f1 <- mean(x > 2) #compute F(x)_hat for P(x > 2)
 f2 <- mean((0 < x) & (x < 1)) # compute F(x)_hat for P(0 < x < 1)
 
 library(testthat)
-testthat::test_that("Compare to pnorm()", {
+test_that("Compare to pnorm()", {
   expect_equal(f1, pnorm(2, lower.tail = FALSE), tol = 0.01)
   expect_equal(f2, pnorm(1, lower.tail = TRUE) - pnorm(0, lower.tail = TRUE), tol = 0.01)
 })
