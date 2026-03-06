@@ -99,7 +99,7 @@ lower <- mu_x - qt(alpha / 2, df = n-1, lower.tail = FALSE) * se_x
 upper <- mu_x + qt(alpha / 2, df = n-1, lower.tail = FALSE) * se_x
 
 y <- ifelse((theta < upper) & (theta > lower), 1, 0)
-mean(y)
+mean(y) # Expect to get a value around 0.95
 
 
 
