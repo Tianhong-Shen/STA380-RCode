@@ -1,6 +1,6 @@
 # STA380-RCode
 
-A collection of R scripts for **STA380 simulation and Monte Carlo methods** practice, including lecture examples, quiz practice, and term-test-style problems.
+This is a Repo for my STA380H5 S (Winter) Computational Statistics R code practice, including lecture examples, quiz practice, and term test Practice problems.
 
 ## Repository Overview
 
@@ -8,11 +8,6 @@ This repository is organized into two folders that roughly follow course progres
 
 - **Term Test 1/**: Random variate generation and foundational Monte Carlo methods.
 - **Term Test 2/**: Variance reduction, estimation accuracy, confidence intervals, and hypothesis testing.
-
-It also includes:
-
-- `STA380-RCode.Rproj`: RStudio project configuration.
-- `LICENSE`: MIT license.
 
 ## Folder and File Guide
 
@@ -41,14 +36,12 @@ Transformation/convolution-based simulation constructions:
 - Gamma via sums of exponentials.
 - Practice examples involving \(t\)- and \(F\)-type constructions.
 
-#### `Unit1_Mixture_Methoc.R`
+#### `Unit1_Mixture_Method.R`
 Mixture method examples:
 
 - Two-component and three-component normal mixtures.
 - Categorical component selection with specified probabilities.
 - Practice problems comparing sampled mixtures vs weighted combinations.
-
-> Note: filename is `Unit1_Mixture_Methoc.R` (spelling as in repository).
 
 #### `Unit2_simple_Monte_Carlo.R`
 Simple Monte Carlo integration/expectation estimation:
@@ -115,28 +108,8 @@ Install package if needed:
 install.packages("testthat")
 ```
 
-## How to Run
-
-From the repository root:
-
-```bash
-Rscript "Term Test 1/Unit1_Inverse_Transform.R"
-```
-
-or open the RStudio project:
-
-```bash
-open STA380-RCode.Rproj
-```
-
-(Use your OS equivalent to open project files.)
-
 ## Notes
 
 - Scripts are primarily educational and demonstration-oriented, with many independent code blocks intended to run section-by-section.
 - Some scripts generate plots (`hist`, `curve`, `plot`, `points`) for visual validation.
 - Random outputs vary unless you set a seed (e.g., `set.seed(123)`).
-
-## License
-
-This project is licensed under the MIT License. See [`LICENSE`](LICENSE).
