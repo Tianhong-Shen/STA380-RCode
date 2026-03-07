@@ -74,7 +74,7 @@ theta_1_hat <- rowMeans(x)
 theta_2_hat <- sqrt(1/(n-1) * rowSums((x - rowMeans(x))^2))
 
 pc <- abs(theta_1_hat - theta) <= abs(theta_2_hat - theta)
-sum(pc) / m # it will return something around 0.39871, which is smaller than 0.5
+mean(pc) # it will return something around 0.39871, which is smaller than 0.5
 # then theta_2_hat is said to be pitman closer to theta, which theta_2_hat is 
 # better estimator
 
@@ -93,7 +93,7 @@ x <- matrix(rnorm(n*m, mean = theta, sd = sqrt(2)), nrow = m)
 mu_x <- rowMeans(x)
 
 se_x <- sqrt((1/(n-1)) * rowSums( (x - rowMeans(x))^(2)) ) / sqrt(n)# because
-# standard error is sqrt(var(x) / n) 
+# standard error is sqrt(var(x) / n) we are using the unbias version in here
 
 lower <- mu_x - qt(alpha / 2, df = n-1, lower.tail = FALSE) * se_x
 upper <- mu_x + qt(alpha / 2, df = n-1, lower.tail = FALSE) * se_x
@@ -103,10 +103,68 @@ mean(y) # Expect to get a value around 0.95
 
 
 
+# unit 2 practice problems Q1 part b
+n <- 10^5
+alpha <- 2
+beta <- 2
+x <- rgamma(n, shape = alpha, scale = beta)
+
+cond <- (x < 2)
+p_hat <- mean(cond)
+
+se <- sqrt(sum((cond - p_hat)^2)) / n
+
+lower <- p_hat - qnorm(0.05, lower.tail = FALSE) * se
+upper <- p_hat + qnorm(0.05, lower.tail = FALSE) * se
+
+CI <- c(lower, upper)
+CI
 
 
 
+# unit 2 practice problems Q2 
+n <- 10^5
+u <- runif(n, 0, 10)
+theta_hat <- mean(10 * u * log(u)) # estimate theta using simple monte carlo
+
+#compute exact expression for var(theta_hat)
+fun1 <- function(x){
+  ((x * log(x))^2) / 10
+}
+fun2 <- function(x){
+  (x*log(x)) / 10
+}
+
+part1 <- integrate(fun1, lower = 0, upper = 10)
+part2 <- integrate(fun2, lower = 0, upper = 10)
+
+var <- (100 / n) * (part1$value - ((part2$value)^2))
+var
+
+# use monte carlo to estimate var_hat
+var_hat <- sum((10*u*log(u) - mean(10*u*log(u)))^2) / (n^2)
+var_hat
 
 
 
+# unit 2 practice problems Q3
+n <- 10^4
+u <- runif(n, 0, 10)
+theta_hat <- mean(10 * exp(u) * log(u))
 
+fun1 <- function(x){
+  ((exp(x) * log(x))^2) / 10
+}
+
+fun2 <- function(x){
+  (exp(x) * log(x)) / 10
+}
+
+part1 <- integrate(fun1, lower = 0, upper = 10)
+part2 <- integrate(fun2, lower = 0, upper = 10)
+
+var <- (100 / n) * (part1$value - (part2$value)^2)
+
+var_hat <- sum((10*exp(u)*log(u) - mean(10*exp(u)*log(u)))^2) / (n ^ 2)
+
+var ; var_hat

@@ -31,11 +31,30 @@ test_that("checking importance sampling", {
 
 
 
+# unit 2 practice problems Q4
+
+# compute exact value
+fun <- function(x){
+  exp(-((log(x))^2) / 2)
+}
+
+val <- integrate(fun, lower = 1, upper = 4)$value
+
+# use simple monte carlo estimation
+n <- 10^5
+u <- runif(n, 1, 4)
+theta_hat <- mean(3 * exp(-log(u)^2 / 2))
+
+val ; theta_hat
+  
+#estimate theta using importance function log-normal
+x <- rlnorm(n, meanlog = 0, sdlog = 1)
+new_est <- mean(sqrt(2 * pi) * x * ((x < 4) & (x > 1)))
+
+val ; new_est ; theta_hat
 
 
 
 
 
-
-
-
+  

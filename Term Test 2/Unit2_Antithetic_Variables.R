@@ -49,10 +49,17 @@ test_that("compare pnorm", {
 
 
 
+# unit 2 practice problems Q6
+n <- 10^5
+theta <- 2
+u <- runif(n/2)
 
+part1 <- (u / theta) * exp(-u / theta)
+part2 <- ((1-u) / theta) * exp(-(1-u) / theta)
 
-
-
+theta_hat <- mean((part1 + part2) /2)
+true_val <- theta - (theta + 1) * exp(-1 / theta)
+theta_hat ; true_val
 
 
 

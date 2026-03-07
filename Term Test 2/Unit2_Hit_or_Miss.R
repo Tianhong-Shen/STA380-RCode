@@ -35,5 +35,37 @@ CI_2 <- c(f2 - z_alpha * SE2, f2 + z_alpha * SE2)
 
 
 
+# Quiz 3 practice problem Q2
+n <- 10^4
+alpha <- 2
+lambda <- 3
+x <- rweibull(n, shape = alpha, scale = lambda)
+
+# compute the actual value
+val <- pweibull(3, shape = alpha, scale = lambda) - pweibull(0, shape = alpha, scale = lambda)
+
+# use hit or miss to estimate
+p_hat <- mean((x < 3) & (x > 0))
+
+val
+p_hat
+
+
+# unit 2 practice problems Q1 part a 
+n <- 10^5
+alpha <- 2
+beta <- 3
+x <- rgamma(n, shape = alpha, scale = beta)
+
+p_hat <- mean(x < 2)
+
+
+
+
+
+
+
+
+
 
 
