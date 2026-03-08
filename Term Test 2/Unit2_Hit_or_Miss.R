@@ -61,10 +61,15 @@ p_hat <- mean(x < 2)
 
 
 
+# Term Test 2 practice version A Q1 part a 
+n <- 10^5
+theta <- 2
+x <- rexp(n, rate = 1 / theta)
 
+p_hat <- mean(x < 3)
 
-
-
+p <- pexp(3, rate = 1 / theta, lower.tail = TRUE)
+p_hat ; p
 
 
 

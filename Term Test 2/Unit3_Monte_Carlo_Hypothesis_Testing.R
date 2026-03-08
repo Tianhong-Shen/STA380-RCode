@@ -42,6 +42,79 @@ power # as increase abs(mu1 - mu0) power increase, decrease sigma power increase
 
 
 
+# Quiz 4 practice problem Q2
+
+# compute rejection region
+k_star <- qgamma(0.1, shape = 10, scale = 3, lower.tail = FALSE)
+
+k_star
+
+# compute type I error rate
+n <- 10
+m <- 10^5
+alpha <- 0.1
+theta <- 3
+
+x <- matrix(rexp(n*m, rate = 1 / theta), nrow = m)
+
+# compute test statistic
+test_stat <- rowSums(x)
+
+type1 <- mean(test_stat > k_star)
+
+type1
+
+# compute type II error rate
+n <- 10
+m <- 10^5
+theta_alter <- 4
+alpha <- 0.1
+x <- matrix(rexp(n*m, rate = 1 / theta_alter), nrow = m)
+#compute critical value under allternative hypothesis
+k <- qgamma(alpha, shape = 10, scale = 3, lower.tail = FALSE)
+test_stat <- rowSums(x)
+type2 <- mean(test_stat < k) ; power = 1 - type2
+
+type2 ; power
+
+# another way to compute type II error rate (personally prefer this way!)
+n <- 10
+m <- 10^5
+theta_alter <- 4
+alpha <- 0.1
+x <- matrix(rexp(n*m, rate = 1 / theta_alter), nrow = m)
+test_stat <- rowSums(x)
+k <- qgamma(alpha, shape = 10, scale = 3, lower.tail = FALSE)
+
+type2 <- mean(test_stat <= k); power = 1 - type2
+
+type2; power
+
+
+
+
+
+# Term Test 2 practice version A Q5
+n <- 20
+m <- 10^4
+theta <- 5
+
+# find critical value
+k <- qgamma(0.05, shape = 20, scale = 5, lower.tail = FALSE)
+
+x <- matrix(rexp(n*m, rate = 1/theta), nrow = m)
+
+# find test statistic
+test_stat <- rowSums(x)
+
+# type I error rate
+type1 <- mean(test_stat > k)
+type1
+
+
+
+
+
 
 
 

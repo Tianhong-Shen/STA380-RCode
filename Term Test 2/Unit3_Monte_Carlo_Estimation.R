@@ -168,3 +168,76 @@ var <- (100 / n) * (part1$value - (part2$value)^2)
 var_hat <- sum((10*exp(u)*log(u) - mean(10*exp(u)*log(u)))^2) / (n ^ 2)
 
 var ; var_hat
+
+
+
+# Quiz 4 practice problem Q1
+#install.packages("extraDistr")
+#library("extraDistr")
+alpha <- 3
+beta <- 2
+n <- 100
+m <- 10^4
+
+# generate y^(1), ..., y^(m) with n sample size in each y^(j)
+y <- matrix(extraDistr::rpareto(n*m, a = alpha, b = beta), nrow = m)
+
+# compute Monte Carlo estimate for alpha_hat_mome
+alpha_mome <- mean(rowMeans(y) / (rowMeans(y) - 2))
+
+# compute Monte Carlo estimate for alpha_hat_MLE
+alpha_MLE <- mean(n / (rowSums(log(y)) - n * log(beta)))
+
+alpha_MLE ; alpha_mome ; alpha # since alpha_MLE is closer to alpha, it is better
+
+
+
+# Term Test 2 practice version A Q1 part b 
+n <- 10^5
+theta <- 2
+x <- rexp(n, rate = 1 / theta)
+
+cond <- (x < 3)
+p_hat <- mean(cond)
+
+se <- sqrt(sum((cond - p_hat)^2)) / n
+
+lower <- p_hat - qnorm(0.005, lower.tail = FALSE) * se
+upper <- p_hat + qnorm(0.005, lower.tail = FALSE) * se
+
+CI <- c(lower, upper)
+
+
+
+# Term Test 2 practice version A Q2 
+n <- 10^4
+x <- rnorm(n, mean = 0, sd = 3)
+theta_hat <- mean(2 * sin(x ^ 2))
+
+theta_hat
+
+
+# Term Test 2 practice version A Q4
+n <- 10
+m <- 10^4
+theta <- 1
+
+x <- matrix(rnorm(n*m, mean = theta, sd = theta), nrow = m)
+
+theta1_hat <- rowMeans(x)
+theta2_hat <- sqrt((1 / (n-1)) * rowSums((x - rowMeans(x))^2))
+
+pc <- mean(abs(theta1_hat - theta) <= abs(theta2_hat - theta))
+
+pc # return a value around 0.4108, since it is less than 0.5, then we say 
+# theta2_hat is pitman closer to theta
+
+
+
+
+
+
+
+
+
+

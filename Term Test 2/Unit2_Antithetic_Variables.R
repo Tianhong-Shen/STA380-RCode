@@ -63,6 +63,22 @@ theta_hat ; true_val
 
 
 
+# Term Test 2 practice version A Q3
+n <- 10^4
+u <- runif(n)
+theta <- 1
+  
+g1 <- (1 / theta) * exp(-u / theta)
+g2 <- (1 / theta) * exp(-(1 - u) / theta)
+
+theta_hat <- mean((g1+g2) / 2)
+
+true_val <- 1- exp(- 1 / theta)
+
+theta_hat ; true_val
+
+
+
 
 
 
