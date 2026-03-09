@@ -33,7 +33,7 @@ test_stat <- (rowMeans(x) - mu0) / (sigma / sqrt(n))
 
 p_val <- 2 * (pnorm(abs(test_stat), lower.tail = FALSE))
 
-type2 <- mean(p_val > alpha) #type II is fail to reject | Ha is true
+type2 <- mean(p_val >= alpha) #type II is fail to reject | Ha is true
 power <- 1- type2 # power = 1 - type II error 
 
 type2
