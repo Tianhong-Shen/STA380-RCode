@@ -65,6 +65,7 @@ type1 <- mean(test_stat > k_star)
 type1
 
 # compute type II error rate
+set.seed(1)
 n <- 10
 m <- 10^5
 theta_alter <- 4
@@ -81,10 +82,11 @@ type2 ; power
 n <- 10
 m <- 10^5
 theta_alter <- 4
+theta_null <- 3
 alpha <- 0.1
 x <- matrix(rexp(n*m, rate = 1 / theta_alter), nrow = m)
 test_stat <- rowSums(x)
-k <- qgamma(alpha, shape = 10, scale = 3, lower.tail = FALSE)
+k <- qgamma(alpha, shape = n, scale = theta_null, lower.tail = FALSE)
 
 type2 <- mean(test_stat <= k); power = 1 - type2
 
