@@ -1,115 +1,162 @@
 # STA380-RCode
 
-This is a Repo for my STA380H5 S (Winter) Computational Statistics R code practice, including lecture examples, quiz practice, and term test Practice problems.
+R practice repository for **STA380H5 (Computational Statistics)**, covering simulation methods, Monte Carlo inference, resampling, optimization, and final-exam review scripts.
 
-## Repository Overview
+## Repository Structure
 
-This repository is organized into two folders that roughly follow course progression:
+- `Term Test 1/` — random variate generation and foundational Monte Carlo.
+- `Term Test 2/` — variance reduction, estimation diagnostics, and hypothesis testing simulation.
+- `Final Exam/` — resampling, optimization, EM/Newton-Raphson, and formula-sheet reference.
+- `STA380-RCode.Rproj` — RStudio project configuration.
+- `LICENSE` — MIT license.
 
-- **Term Test 1/**: Random variate generation and foundational Monte Carlo methods.
-- **Term Test 2/**: Variance reduction, estimation accuracy, confidence intervals, and hypothesis testing.
+## Detailed File Guide
 
-## Folder and File Guide
+## `Term Test 1/`
 
-### Term Test 1
+### `Unit1_Inverse_Transform.R`
+Inverse-CDF simulation practice:
+- Continuous examples (e.g., densities proportional to `x^2`, exponential, Weibull).
+- Discrete inversion (custom support sets, geometric).
+- Recursive CDF construction for binomial and custom PMFs.
+- Quiz/test practice blocks and histogram checks.
 
-#### `Unit1_Inverse_Transform.R`
-Inverse transform sampling examples and practice problems, including:
+### `Unit1_Acceptance_Rejection.R`
+Acceptance-rejection sampling workflows:
+- Baseline algorithm implementation with acceptance counters.
+- Empirical acceptance-rate checks against theoretical `1/c`.
+- Multiple target/proposal combinations (uniform and exponential proposals).
+- Visualization of accepted points and practice problems.
 
-- Continuous distributions (e.g., densities like \(3x^2\), exponential, Weibull).
-- Discrete simulation using CDF inversion (e.g., geometric, custom discrete RVs).
-- Recursive CDF construction for binomial and a custom PMF.
-- Quiz and term-test practice variants.
+### `Unit1_Transformation_and_Convolution.R`
+Distribution construction by transformation/sums:
+- Beta from gamma/exponential sums.
+- Gamma from exponential sums.
+- Practice for t- and F-related constructions.
 
-#### `Unit1_Acceptance_Rejection.R`
-Acceptance-rejection sampling examples and exercises:
-
-- Core acceptance-rejection workflow with tracking of accepted samples.
-- Empirical acceptance-rate checks against theoretical \(1/c\).
-- Multiple target/proposal settings (uniform and exponential proposals).
-- Quiz and term-test practice applications.
-
-#### `Unit1_Transformation_and_Convolution.R`
-Transformation/convolution-based simulation constructions:
-
-- Beta via ratio of gamma/exponential sums.
-- Gamma via sums of exponentials.
-- Practice examples involving \(t\)- and \(F\)-type constructions.
-
-#### `Unit1_Mixture_Method.R`
-Mixture method examples:
-
+### `Unit1_Mixture_Method.R`
+Mixture-distribution simulation:
 - Two-component and three-component normal mixtures.
-- Categorical component selection with specified probabilities.
-- Practice problems comparing sampled mixtures vs weighted combinations.
+- Categorical component selection via specified probabilities.
+- Side-by-side comparisons between sampled mixtures and weighted combinations.
 
-#### `Unit2_simple_Monte_Carlo.R`
-Simple Monte Carlo integration/expectation estimation:
+### `Unit2_simple_Monte_Carlo.R`
+Simple Monte Carlo integration/expectation:
+- Numerical estimation of integrals on bounded intervals.
+- Comparisons with analytical values or `integrate()`.
+- Includes `testthat` assertions in several examples.
+- Additional practice on transformed-density probabilities.
 
-- Estimation of definite integrals over bounded intervals.
-- Validation against closed-form or `integrate()` values.
-- Use of `testthat::expect_equal()` in several examples.
-- Additional practice problems including transformed-density probability estimation.
+## `Term Test 2/`
 
-### Term Test 2
+### `Matrix_Example.R`
+Quick matrix refresher:
+- Matrix creation (column-major vs row-wise filling).
+- `rowSums`, `colSums`, `rowMeans`, `colMeans`.
 
-#### `Matrix_Example.R`
-Quick matrix operations refresher:
+### `Unit2_Hit_or_Miss.R`
+Indicator-based probability estimation:
+- Tail/interval probability estimation under normal, Weibull, gamma, and exponential settings.
+- Standard error and confidence interval construction.
+- Validation versus built-in CDF functions.
 
-- Matrix creation (default column-major and row-wise filling).
-- Row/column sums and means.
+### `Unit2_Antithetic_Variables.R`
+Variance reduction via antithetic variates:
+- Integral estimation with paired uniforms `u` and `1-u`.
+- Normal CDF approximation for positive and negative cutoffs.
+- Practice problems comparing Monte Carlo estimates to known values.
 
-#### `Unit2_Hit_or_Miss.R`
-Hit-or-miss Monte Carlo probability estimation:
+### `Unit2_Importance_Sampling.R`
+Importance sampling:
+- Rare-event normal-tail estimation with exponential proposal.
+- Integral estimation with normal/log-normal proposals.
+- Comparison with simple Monte Carlo baselines.
 
-- Estimating tail and interval probabilities for normal and Weibull/gamma contexts.
-- Confidence interval construction for Bernoulli-indicator estimates.
-- Comparisons against analytical CDF-based values.
+### `Unit3_Monte_Carlo_Estimation.R`
+Estimator behavior and inferential properties:
+- Estimation of expectations and Monte Carlo standard error.
+- Biased vs unbiased variance/SE formulas.
+- Estimator comparison using MSE and Pitman closeness.
+- Empirical confidence interval coverage experiments.
 
-#### `Unit2_Antithetic_Variables.R`
-Antithetic variates for variance reduction:
+### `Unit3_Monte_Carlo_Hypothesis_Testing.R`
+Simulation-based hypothesis-testing diagnostics:
+- Type I error under null settings.
+- Type II error and power under alternatives.
+- Sensitivity to sample size, variance, and effect size.
 
-- Integral estimation with paired uniforms \(u\) and \(1-u\).
-- Approximation of normal CDF values for positive and negative cutoffs.
-- Practice problem using antithetic construction with exponential-type terms.
+## `Final Exam/`
 
-#### `Unit2_Importance_Sampling.R`
-Importance sampling examples:
+### `Unit4_Bootstrap.R`
+Bootstrap estimation with `sleepstudy` data:
+- Bootstrap mean estimate.
+- Bootstrap standard error and bias.
+- Quantile and empirical bootstrap confidence intervals.
 
-- Rare-event normal tail probability estimation using exponential proposal.
-- Integral estimation using normal and log-normal importance functions.
-- Comparisons of simple MC vs importance sampling estimates.
+### `Unit4_Jackknife.R`
+Jackknife resampling examples:
+- Jackknife estimates for mean and variance.
+- Jackknife bias estimation.
+- Jackknife standard error for median.
 
-#### `Unit3_Monte_Carlo_Estimation.R`
-Monte Carlo estimator behavior and inference:
+### `Unit4_Permutation_Test.R`
+Permutation test workflow:
+- Two-sample distribution comparison via KS-style statistic.
+- Monte Carlo permutation null distribution and p-value.
+- Comparison with `ks.test()` output.
 
-- Estimation of expectations and standard errors.
-- Bias/unbiased variance/SE calculations.
-- Estimator comparison via MSE and Pitman closeness.
-- Empirical confidence interval coverage studies.
-- Additional practice on variance expressions and Monte Carlo variance checks.
+### `Unit6_Optimize.R`
+Optimization and MLE computation:
+- Univariate optimization with `optimize()`.
+- Likelihood-based estimation using `optimize()` and `optim()`.
+- MLE examples for Pareto-, gamma-, and normal-related parameters.
 
-#### `Unit3_Monte_Carlo_Hypothesis_Testing.R`
-Monte Carlo hypothesis testing diagnostics:
+### `Unit6_Newton_Raphson.R`
+Newton-Raphson numerical MLE:
+- Iterative parameter updates via gradient/Hessian (using `numDeriv`).
+- Gamma and normal likelihood examples.
+- Convergence checks via Euclidean-step tolerance.
 
-- Type I error simulation under null.
-- Type II error and power simulation under alternative.
-- Sensitivity notes on effect size, variance, and sample size.
+### `Unit6_EM_Algorithm.R`
+EM algorithm demonstrations with missing values:
+- Poisson mean estimation with one missing observation.
+- Normal mean estimation (known sigma) with one missing observation.
+- Iterative fixed-point update until tolerance is met.
+
+### `STA380 Final Exam Formula Sheet.pdf`
+Reference PDF for final exam formulas and summary notes.
 
 ## Requirements
 
-- **R** (recommended >= 4.0)
-- Optional package used in multiple scripts:
+- **R** (recommended `>= 4.0`).
+- Optional packages used by scripts:
   - `testthat`
+  - `numDeriv`
+  - `extraDistr`
+  - `lme4`
 
-Install package if needed:
+Install packages if needed:
 
 ```r
-install.packages("testthat")
+install.packages(c("testthat", "numDeriv", "extraDistr", "lme4"))
 ```
+
+## How to Run
+
+Because scripts are educational and section-based, the typical workflow is:
+
+1. Open `STA380-RCode.Rproj` in RStudio.
+2. Open a script for the relevant unit.
+3. Run blocks top-to-bottom (or section-by-section).
+4. Optionally set a seed for reproducibility, e.g. `set.seed(123)`.
 
 ## Notes
 
-- Scripts are primarily educational and demonstration-oriented, with many independent code blocks intended to run section-by-section.
-- Some scripts generate plots (`hist`, `curve`, `plot`, `points`) for visual validation.
-- Random outputs vary unless you set a seed (e.g., `set.seed(123)`).
+- Many scripts are self-contained demonstrations rather than packaged functions.
+- Several scripts include plots (`hist`, `curve`, `plot`, `points`) for visual checks.
+- Randomized outputs vary unless seeds are fixed.
+- Some scripts reuse variable names across sections; re-run clean sessions when needed.
+
+## License
+
+This repository is licensed under the MIT License. See `LICENSE` for details.
